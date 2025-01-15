@@ -6,29 +6,45 @@ local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-de
 function MapGen_Gerkizia()
     -- Nauvis-based generation
     local map_gen_setting = table.deepcopy(data.raw.planet.nauvis.map_gen_settings)
-    --map_gen_setting.property_expression_names.elevation = "lakes"
-
-    --map_gen_setting.terrain_segmentation = "very-high"
 
     map_gen_setting.autoplace_controls = {
-        ["stone"] = { frequency = 9, size = 9, richness = 12 },
-        ["iron-ore"] = { frequency = 6, size = 6, richness = 6 },
-        ["coal"] = { frequency = 6, size = 6, richness = 6 },
-        ["copper-ore"] = { frequency = 6, size = 6, richness = 6 },
-        ["crude-oil"] = { frequency = 6, size = 6, richness = 6 },
-        ["trees"] = { frequency = 6, size = 6, richness = 6 },
+        ["stone"] = { frequency = 9, size = 4, richness = 12 },
+        ["iron-ore"] = { frequency = 6, size = 4, richness = 6 },
+        ["coal"] = { frequency = 6, size = 4, richness = 6 },
+        ["copper-ore"] = { frequency = 6, size = 4, richness = 6 },
+        ["crude-oil"] = { frequency = 6, size = 4, richness = 6 },
+        ["trees"] = { frequency = 6, size = 4, richness = 6 },
         ["water"] = { frequency = 12, size = 6, richness = 6 },
-        ["uranium-ore"] = { frequency = 0, size = 0, richness = 0 },
+    }
+    map_gen_setting.territory_settings = {
+      units = {"small-demolisher", "medium-demolisher", "big-demolisher"},
+      territory_index_expression = "demolisher_territory_expression",
+      territory_variation_expression = "demolisher_variation_expression",
+      minimum_territory_size = 10
     }
     return map_gen_setting
 end
--- increse stone patch size in start area
--- data.raw["resource"]["stone"]["autoplace"]["starting_area_size"] = 5500 * (0.005 / 3)
 
 --END MAP GEN
 
 local nauvis = data.raw["planet"]["nauvis"]
 local planet_lib = require("__PlanetsLib__.lib.planet")
+local gerkizia_astroid_spawn =
+{
+  probability_on_range_chunk =
+  {
+    {position = 0.1, probability = asteroid_util.nauvis_chunks, angle_when_stopped = asteroid_util.chunk_angle},
+    {position = 0.9, probability = asteroid_util.gleba_chunks, angle_when_stopped = asteroid_util.chunk_angle}
+  },
+  type_ratios =
+  {
+    {position = 0.1, ratios = asteroid_util.nauvis_ratio},
+    {position = 0.9, ratios = asteroid_util.gleba_ratio},
+  }
+}
+
+local gerkizia_astroid_spawn = asteroid_util.spawn_definitions(gerkizia_astroid_spawn, 0.9)
+
 
 local gerkizia= 
 {
@@ -47,7 +63,10 @@ local gerkizia=
         ["magnetic-field"] = nauvis.surface_properties["magnetic-field"],
         ["day-night-cycle"] = nauvis.surface_properties["day-night-cycle"],
     },
-    map_gen_settings = MapGen_Gerkizia()
+    map_gen_settings = MapGen_Gerkizia(),
+    asteroid_spawn_influence = 1,
+    asteroid_spawn_definitions = gerkizia_astroid_spawn
+    
 }
 
 gerkizia.orbit = {
@@ -55,8 +74,8 @@ gerkizia.orbit = {
         type = "space-location",
         name = "star",
     },
-    distance = 1,
-    orientation = 0.78
+    distance = 16,
+    orientation = 0.34
 }
 
 local gerkizia_connection = {

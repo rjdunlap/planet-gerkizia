@@ -8,11 +8,11 @@ function MapGen_Gerkizia()
     local map_gen_setting = table.deepcopy(data.raw.planet.nauvis.map_gen_settings)
 
     map_gen_setting.autoplace_controls = {
-        ["stone"] = { frequency = 9, size = 4, richness = 12 },
-        ["iron-ore"] = { frequency = 6, size = 4, richness = 6 },
-        ["coal"] = { frequency = 6, size = 4, richness = 6 },
-        ["copper-ore"] = { frequency = 6, size = 4, richness = 6 },
-        ["crude-oil"] = { frequency = 6, size = 4, richness = 6 },
+        ["stone"] = { frequency = 9, size = 4, richness = 6 },
+        ["iron-ore"] = { frequency = 6, size = 4, richness = 3 },
+        ["coal"] = { frequency = 6, size = 4, richness = 3 },
+        ["copper-ore"] = { frequency = 6, size = 4, richness = 3 },
+        ["crude-oil"] = { frequency = 6, size = 4, richness = 4 },
         ["trees"] = { frequency = 6, size = 4, richness = 6 },
         ["water"] = { frequency = 12, size = 6, richness = 6 },
     }
@@ -29,7 +29,7 @@ end
 
 local nauvis = data.raw["planet"]["nauvis"]
 local planet_lib = require("__PlanetsLib__.lib.planet")
-local gerkizia_astroid_spawn =
+local start_astroid_spawn_rate =
 {
   probability_on_range_chunk =
   {
@@ -42,9 +42,7 @@ local gerkizia_astroid_spawn =
     {position = 0.9, ratios = asteroid_util.gleba_ratio},
   }
 }
-
-local gerkizia_astroid_spawn = asteroid_util.spawn_definitions(gerkizia_astroid_spawn, 0.9)
-
+local start_astroid_spawn = asteroid_util.spawn_definitions(start_astroid_spawn_rate, 0.1)
 
 local gerkizia= 
 {

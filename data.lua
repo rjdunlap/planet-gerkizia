@@ -87,6 +87,8 @@ local gerkizia_connection = {
   }
 
 PlanetsLib:extend({gerkizia})
+PlanetsLib.borrow_music(data.raw["planet"]["nauvis"], gerkizia)
+
 
 data:extend{gerkizia_connection}
 

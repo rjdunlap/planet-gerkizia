@@ -1,1 +1,2 @@
-APS.set_fixed_choice("gerkizia")
+APS.add_choice("gerkizia")
+APS.set_default_choice("gerkizia")

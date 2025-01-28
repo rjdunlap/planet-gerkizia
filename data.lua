@@ -73,7 +73,7 @@ gerkizia.orbit = {
         type = "space-location",
         name = "star",
     },
-    distance = 16,
+    distance = 18,
     orientation = 0.34
 }
 

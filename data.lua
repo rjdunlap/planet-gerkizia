@@ -60,6 +60,7 @@ local gerkizia=
         ["pressure"] = nauvis.surface_properties["pressure"],
         ["magnetic-field"] = nauvis.surface_properties["magnetic-field"],
         ["day-night-cycle"] = nauvis.surface_properties["day-night-cycle"],
+        ["gravity"] = 10,
     },
     map_gen_settings = MapGen_Gerkizia(),
     asteroid_spawn_influence = 1,
@@ -96,8 +97,8 @@ data:extend{gerkizia_connection}
 data:extend {{
     type = "technology",
     name = "planet-discovery-gerkizia",
-    icons = util.technology_icon_constant_planet("__planet-gerkizia__/graphics/planet-gerkizia.png"),
-    icon_size = 256,
+    icons = PlanetsLib.technology_icon_constant_planet("__planet-gerkizia__/graphics/planet-gerkizia.png", 512),
+    icon_size = 512,
     essential = true,
     localised_description = {"space-location-description.gerkizia"},
     effects = {

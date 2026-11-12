@@ -1,0 +1,12 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.3.0
+Date: 2026-11-12
+  Changes:
+    - Any Planet Start is now an optional dependency. The start-planet choice and the tech tree changes only apply when it is installed and this planet is the chosen start planet.
+  Bugfixes:
+    - Fixed a crash in the chunk generation handler when the surface has no autoplace controls (for example when another mod hides the planet).
+---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 2026-11-12
+  Changes:
+    - Updated for Factorio 2.1.

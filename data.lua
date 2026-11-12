@@ -126,4 +126,7 @@ data:extend {{
 }}
 
 
-APS.add_planet{name = "gerkizia", filename = "__planet-gerkizia__/gerkizia.lua", technology = "planet-discovery-gerkizia"}
+-- Any Planet Start is optional.
+if mods["any-planet-start"] then
+    APS.add_planet{name = "gerkizia", filename = "__planet-gerkizia__/gerkizia.lua", technology = "planet-discovery-gerkizia"}
+end

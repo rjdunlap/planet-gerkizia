@@ -9,10 +9,20 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 		return
 	end
 
+	local controls = surface.map_gen_settings.autoplace_controls
+	if not controls then
+		-- Surface has no autoplace controls (e.g. the planet was hidden by another mod): nothing to redistribute.
+		return
+	end
+
 	local richness = {}
 
 	for _, ore_name in pairs({ "iron-ore", "copper-ore", "coal", "stone" }) do
-		richness[ore_name] = surface.map_gen_settings.autoplace_controls[ore_name].richness
+		local control = controls[ore_name]
+		if not control then
+			return
+		end
+		richness[ore_name] = control.richness
 	end
 
 	if not storage.ore_data then

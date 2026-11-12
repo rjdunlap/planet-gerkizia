@@ -1,12 +1,12 @@
 {
     "name": "planet-gerkizia",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "title": "Planet Gerkizia",
     "author": "rjdunlap",
     "factorio_version": "2.1",
     "dependencies": ["base >= 2.1.22",
       "space-age",
-      "any-planet-start >= 1.2.6",
+      "? any-planet-start >= 1.2.6",
       "PlanetsLib >= 2.2.1"],
     "description": "This mod adds in a new starter planet Gerkizia"
   }
